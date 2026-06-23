@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | WasteConnect</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">♻ WasteConnect</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+      <li><a href="complaint.html">Complaint</a></li>
+
+      <li><a href="login.html" class="active">Login</a></li>
+      <li class="account-menu" id="accountMenu" style="display:none;">
+    <li class="account-menu" id="accountMenu">
+      <a href="#" class="account-name">👤 You ▾</a>
+      <ul class="dropdown" id="accountDropdown">
+        <li><a href="login.html" id="loginOption">Login</a></li>
+        <li><a href="signup.html" id="signupOption">Sign Up</a></li>
+    </ul>
+  </nav>
+
+  <!-- Login Section -->
+  <section class="login-section">
+    <div class="login-container">
+      <div class="form-box login-box">
+        <h2>Login</h2>
+        <form>
+          <label for="loginEmail">Email</label>
+          <input type="email" id="loginEmail" placeholder="Enter your email" required>
+
+          <label for="loginPassword">Password</label>
+          <input type="password" id="loginPassword" placeholder="Enter your password" required>
+
+          <button type="submit" class="form-btn">Login</button>
+          <p class="switch-text">Don't have an account? <a href="#signupBox" onclick="showSignup()">Sign Up</a></p>
+        </form>
+      </div>
+
+      <div class="form-box signup-box" id="signupBox" style="display:none;">
+        <h2>Sign Up</h2>
+        <form>
+          <label for="signupName">Full Name</label>
+          <input type="text" id="signupName" placeholder="Enter your name" required>
+
+          <label for="signupEmail">Email</label>
+          <input type="email" id="signupEmail" placeholder="Enter your email" required>
+
+          <label for="signupPassword">Password</label>
+          <input type="password" id="signupPassword" placeholder="Create a password" required>
+
+          <label for="signupConfirm">Confirm Password</label>
+          <input type="password" id="signupConfirm" placeholder="Confirm your password" required>
+
+          <button type="submit" class="form-btn">Sign Up</button>
+          <p class="switch-text">Already have an account? <a href="#loginBox" onclick="showLogin()">Login</a></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!--script>
+    function showSignup() {
+      document.querySelector('.login-box').style.display = "none";
+      document.querySelector('.signup-box').style.display = "block";
+    }
+    function showLogin() {
+      document.querySelector('.signup-box').style.display = "none";
+      document.querySelector('.login-box').style.display = "block";
+    }
+  </script-->
+</body>
+</html>

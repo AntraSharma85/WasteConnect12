@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manufacturers & Collectors | Waste Management</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/script.js" defer></script>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="logo">♻ WasteConnect</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html" class="active">Contact Us</a></li>
+            <li><a href="complaint.html">Complaint</a></li>
+
+      <li><a href="login.html" class="active">Login</a></li>
+    <li class="account-menu" id="accountMenu">
+      <a href="#" class="account-name">👤 You ▾</a>
+      <ul class="dropdown" id="accountDropdown">
+        <li><a href="login.html" id="loginOption">Login</a></li>
+        <li><a href="signup.html" id="signupOption">Sign Up</a></li>
+
+    </ul>
+    <div class="auth-buttons">
+      <button class="btn login-btn">Login</button>
+      <button class="btn signup-btn">Sign Up</button>
+    </div>
+  </nav>
+
+  <header class="hero-section manufacturer-hero">
+    <div class="overlay1"></div>
+    <div class="hero-content1">
+      <h1>🌍 Recyclers & Collectors</h1>
+      <p>We connect collectors with manufacturers to create a cleaner, greener future.</p>
+    </div>
+  </header>
+
+  <!-- Manufacturers -->
+  <section class="section">
+    <h2 class="section-heading">🏭 Our Recyclers</h2>
+    <div class="card-container">
+      <div class="card">
+        <h3>Green Plastics Ltd</h3>
+        <p>Recycles plastics into reusable products.<br><b>500kg/month</b></p>
+      </div>
+      <div class="card">
+        <h3>Eco Paper Mills</h3>
+        <p>Processes paper into eco-notebooks.<br><b>300kg/month</b></p>
+      </div>
+      <div class="card">
+        <h3>Urban E-Waste Solutions</h3>
+        <p>Safe disposal of electronics.<br><b>200kg/month</b></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Collectors -->
+  <section class="section alt-bg">
+    <h2 class="section-heading">🚛 Our Collectors</h2>
+    <div class="card-container">
+      <div class="card">
+        <h3>Clean City Collectors</h3>
+        <p>Household plastic & organic waste</p>
+      </div>
+      <div class="card">
+        <h3>Smart Scrap Dealers</h3>
+        <p>Handles paper & metal waste</p>
+      </div>
+      <div class="card">
+        <h3>Tech Waste Collectors</h3>
+        <p>Specialized in e-waste</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contributors>
+  <section class="section">
+    <h2 class="section-heading">🌟 Top Contributors</h2>
+    <div class="contributors">
+      <div class="contributor">👤 Antra Sharma – 50kg plastic</div>
+      <div class="contributor">👤 Rajesh Kumar – 35kg paper</div>
+      <div class="contributor">👤 Priya Verma – 20kg e-waste</div>
+      <div class="contributor">👤 Aarav Singh – 60kg organic</div>
+    </div>
+  </section-->
+
+  <!-- Waste Request -->
+  <section class="section request-section">
+    <h2 class="section-heading">📋 Request Waste Pickup</h2>
+    <div class="form-container">
+      
+      <!-- Pickup Form -->
+      <form id="pickupForm" class="pickup-form">
+        <h3>Schedule Your Pickup</h3>
+        
+        <label for="name">Full Name</label>
+        <input type="text" id="name" placeholder="Enter your name" required>
+
+        <label for="address">Pickup Address</label>
+        <textarea id="address" placeholder="Enter address" required></textarea>
+
+        <label for="wasteType">Waste Type</label>
+        <select id="wasteType" required>
+          <option value="">-- Select --</option>
+          <option value="plastic">Plastic</option>
+          <option value="paper">Paper</option>
+          <option value="ewaste">E-Waste</option>
+          <option value="organic">Organic Waste</option>
+        </select>
+
+        <div id="wasteInfo" class="waste-info"></div>
+        <button type="submit" class="btn form-btn">Submit Request</button>
+        <div id="confirmationMessage" class="confirmation"></div>
+      </form>
+
+      <!-- Service Charges -->
+      <div class="charges-panel">
+        <h3>💰 Service Charges</h3>
+        <table>
+          <tr><th>Waste Type</th><th>Charge</th><th>Reward</th></tr>
+          <tr><td>Plastic</td><td>₹0</td><td>10 Points</td></tr>
+          <tr><td>Paper</td><td>₹0</td><td>8 Points</td></tr>
+          <tr><td>Organic</td><td>₹30</td><td>Free Compost</td></tr>
+          <tr><td>E-Waste</td><td>₹50/kg</td><td>Safe Disposal</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+  <!-- Contact Us -->
+<section class="section alt-bg">
+  <h2 class="section-heading">Contact Us</h2>
+
+  <div class="contact-options">
+    <div class="contact-card">
+      <i class="fa-solid fa-envelope"></i>
+      <h3>Email</h3>
+      <p>wasteconnect@gmail.com</p>
+    </div>
+    <div class="contact-card">
+      <i class="fa-solid fa-phone"></i>
+      <h3>Call</h3>
+      <p>+91 98765 43210</p>
+    </div>
+    <div class="contact-card">
+      <i class="fa-solid fa-comment-dots"></i>
+      <h3>SMS</h3>
+      <p>Send “Waste Pickup” to 12345</p>
+    </div>
+  </div>
+
+  <form class="contact-form">
+    <label for="contactName">Your Name</label>
+    <input type="text" id="contactName" required>
+
+    <label for="contactEmail">Email Address</label>
+    <input type="email" id="contactEmail" required>
+
+    <label for="contactMessage">Message</label>
+    <textarea id="contactMessage" required></textarea>
+
+    <button type="submit" class="form-btn">Send Message</button>
+  </form>
+</section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2025 WasteConnect | Designed with ♻ </p>
+  </footer>
+
+</body>
+<script src="js/script.js"></script>
+</html>

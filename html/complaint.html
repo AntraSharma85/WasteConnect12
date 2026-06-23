@@ -1,0 +1,129 @@
+<!<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Complaint & Reporting Portal</title>
+  <link rel="stylesheet" href="css/style1.css" />
+</head>
+<body>
+  <!--  Navbar -->
+  <nav class="navbar">
+    <div class="logo">♻ WasteConnect</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="complaint.html" class="active">Complaint</a></li>
+      <li><a href="login.html">Login</a></li>
+    </ul>
+  </nav>
+
+  <!--  Page Header -->
+  <header class="header">
+    <h1>Government Waste Management Complaint Portal</h1>
+    <p>Bridge between citizens and government bodies for a cleaner city</p>
+  </header>
+
+  <!-- 🧾 Complaint Form + Portal Section -->
+  <div class="container">
+    <!-- Left: Complaint Form -->
+    <section class="complaint-form">
+      <h2>Submit a Complaint</h2>
+      <p>Fill the details to report waste problems to the authorities.</p>
+
+      <form id="complaintForm">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" required />
+
+        <label for="issue">Issue Description:</label>
+        <textarea id="issue" name="issue" rows="4" required></textarea>
+
+        <label for="photo">Upload Photo (optional):</label>
+        <input type="file" id="photo" accept="image/*" />
+        <img id="preview" class="hidden" alt="Image Preview" />
+
+        <button type="submit">Submit Complaint</button>
+      </form>
+
+      <div id="confirmation" class="hidden">
+        ✅ Complaint successfully submitted! <br />
+        Complaint ID: <span id="complaintID"></span><br />
+        Sent to: <b>Municipal & Government Portals</b>
+      </div>
+    </section>
+
+    <!-- Right: Government Portals -->
+    <aside class="govt-portal">
+      <h2>Government & NGO Links</h2>
+      <div class="scroll-container">
+        <div class="card">
+          <img src="mission1.PNG" alt="Swachh Bharat" />
+          <h3>Swachh Bharat Mission</h3>
+          <a href="https://swachhbharatmission.gov.in/" target="_blank">Visit Portal</a>
+        </div>
+        <div class="card">
+          <img src="https://upload.wikimedia.org/wikipedia/en/d/d4/Nagar_Nigam_Logo.png" alt="Nagar Nigam" />
+          <h3>Nagar Nigam Portal</h3>
+          <a href="https://www.nagarnigam.in/" target="_blank">Visit Site</a>
+        </div>
+        <div class="card">
+          <img src="https://upload.wikimedia.org/wikipedia/en/3/3b/Central_Pollution_Control_Board_Logo.png" alt="CPCB" />
+          <h3>Central Pollution Control Board</h3>
+          <a href="https://cpcb.nic.in/" target="_blank">Visit Portal</a>
+        </div>
+        <div class="card">
+          <img src="https://upload.wikimedia.org/wikipedia/en/a/a4/MoHUA_Logo.png" alt="MoHUA" />
+          <h3>Ministry of Housing & Urban Affairs</h3>
+          <a href="https://mohua.gov.in/" target="_blank">Visit Site</a>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <footer>
+    <p>© 2025 Smart Waste Management Project | Designed for a cleaner tomorrow</p>
+  </footer>
+
+  <!-- ✅ JavaScript -->
+  <script>
+    const form = document.getElementById('complaintForm');
+    const photoInput = document.getElementById('photo');
+    const preview = document.getElementById('preview');
+    const confirmation = document.getElementById('confirmation');
+    const complaintID = document.getElementById('complaintID');
+
+    // Image Preview
+    photoInput.addEventListener('change', () => {
+      const file = photoInput.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          preview.src = e.target.result;
+          preview.classList.remove('hidden');
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // Form Submit
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const id = 'CMP' + Math.floor(Math.random() * 100000);
+      complaintID.textContent = id;
+      confirmation.classList.remove('hidden');
+      form.reset();
+      preview.classList.add('hidden');
+
+      // Auto-hide message
+      setTimeout(() => confirmation.classList.add('hidden'), 60000);
+    });
+  </script>
+</body>
+</html>

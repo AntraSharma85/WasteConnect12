@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Complaint Portal - Waste Management</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #e8f0ff, #c7e9b0);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px;
+    }
+    h1 {
+      color: #0b5e0b;
+      text-align: center;
+    }
+    .card {
+      background: white;
+      width: 90%;
+      max-width: 450px;
+      padding: 25px;
+      margin-top: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    input, textarea, button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+    button {
+      background: #0b5e0b;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #087f23;
+    }
+    .hidden {
+      display: none;
+    }
+    #message {
+      color: green;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Complaint & Report Portal</h1>
+
+  <!-- Step 1: User Info -->
+  <div class="card" id="userForm">
+    <h2>Step 1: Verify Your Identity</h2>
+    <input type="text" id="name" placeholder="Enter your name" required>
+    <input type="email" id="email" placeholder="Enter your email" required>
+    <button onclick="generateOTP()">Generate OTP</button>
+  </div>
+
+  <!-- Step 2: OTP Verification -->
+  <div class="card hidden" id="otpForm">
+    <h2>Step 2: Enter OTP</h2>
+    <input type="text" id="otpInput" placeholder="Enter 6-digit OTP">
+    <button onclick="verifyOTP()">Verify OTP</button>
+  </div>
+
+  <!-- Step 3: Complaint Form -->
+  <div class="card hidden" id="complaintForm">
+    <h2>Step 3: Submit Complaint</h2>
+    <input type="text" id="location" placeholder="Enter location">
+    <textarea id="description" placeholder="Describe the issue eg. bin overflow, waste landfills!" rows="4"></textarea>
+    <input type="file" id="photo" accept="image/*">
+    <button onclick="submitComplaint()">Submit Complaint</button>
+  </div>
+
+  <p id="message"></p>
+
+  <script>
+    let generatedOTP = "";
+
+    function generateOTP() {
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+
+      if (!name || !email) {
+        alert("Please fill all fields.");
+        return;
+      }
+
+      generatedOTP = Math.floor(100000 + Math.random() * 900000).toString();
+      localStorage.setItem("userOTP", generatedOTP);
+      localStorage.setItem("userEmail", email);
+      localStorage.setItem("userName", name);
+
+      alert("Your OTP is: " + generatedOTP + " (for verification)");
+      document.getElementById("userForm").classList.add("hidden");
+      document.getElementById("otpForm").classList.remove("hidden");
+    }
+
+    function verifyOTP() {
+      const otpInput = document.getElementById("otpInput").value;
+      const storedOTP = localStorage.getItem("userOTP");
+
+      if (otpInput === storedOTP) {
+        alert("✅ OTP Verified Successfully!");
+        document.getElementById("otpForm").classList.add("hidden");
+        document.getElementById("complaintForm").classList.remove("hidden");
+      } else {
+        alert("❌ Invalid OTP, please try again.");
+      }
+    }
+
+    function submitComplaint() {
+      const location = document.getElementById("location").value;
+      const description = document.getElementById("description").value;
+      const photo = document.getElementById("photo").files[0];
+      const complaintId = "CMP" + Date.now();
+
+      if (!location || !description) {
+        alert("Please fill all fields.");
+        return;
+      }
+
+      // Store complaint locally
+      const complaint = {
+        id: complaintId,
+        user: localStorage.getItem("userName"),
+        email: localStorage.getItem("userEmail"),
+        location,
+        description,
+        image: photo ? photo.name : "No image",
+        date: new Date().toLocaleString()
+      };
+
+      let complaints = JSON.parse(localStorage.getItem("complaints")) || [];
+      complaints.push(complaint);
+      localStorage.setItem("complaints", JSON.stringify(complaints));
+
+      document.getElementById("message").innerText =
+        "✅ Complaint submitted successfully! ID: " + complaintId;
+
+      document.getElementById("complaintForm").reset;
+      setTimeout(() => {
+        document.getElementById("message").innerText = "";
+      }, 8000);
+    }
+  </script>
+</body>
+</html>
